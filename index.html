@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Cowork for Accounting — Interactive Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Hero -->
+  <header class="hero">
+    <nav>
+      <div class="logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="#D97706"/><path d="M9 14l3 3 7-7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Cowork Accounting Demo</span>
+      </div>
+      <div class="nav-links">
+        <a href="#skills">Skills</a>
+        <a href="#demo">Live Demo</a>
+        <a href="#stats">Impact</a>
+        <a href="#" id="openSettings" class="btn btn-outline" style="padding: 0.4rem 1rem; border-color: rgba(255,255,255,0.2); font-size: 0.85rem;">API Key</a>
+      </div>
+    </nav>
+    <div class="hero-content">
+      <span class="badge">Inspired by Jason On Firms</span>
+      <h1>AI-Powered Accounting<br>Skills in Action</h1>
+      <p class="subtitle">See how Claude Cowork automates receipt processing, expense categorization, invoice tracking, bank reconciliation, and monthly reporting — cutting hours of work down to minutes.</p>
+      <div class="hero-buttons">
+        <a href="#demo" class="btn btn-primary">Try the Demo</a>
+        <a href="https://www.youtube.com/watch?v=5DevfwAfVpA&t=148s" target="_blank" class="btn btn-outline">Watch the Video</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="terminal">
+        <div class="terminal-bar"><span></span><span></span><span></span></div>
+        <div class="terminal-body" id="heroTerminal"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Skills Overview -->
+  <section id="skills" class="skills-section">
+    <h2>5 Accounting Skills Demonstrated</h2>
+    <p class="section-sub">Each skill automates a real accounting workflow end-to-end.</p>
+    <div class="skills-grid">
+      <div class="skill-card" data-skill="receipt">
+        <div class="skill-icon">&#128451;</div>
+        <h3>Receipt Processing</h3>
+        <p>OCR extraction of date, vendor, amounts, and tax from receipt images. Auto-generates categorized expense spreadsheets.</p>
+        <div class="skill-time"><span>Before:</span> ~2 hours <span class="arrow">&rarr;</span> <span>After:</span> ~10 min</div>
+      </div>
+      <div class="skill-card" data-skill="categorize">
+        <div class="skill-icon">&#128193;</div>
+        <h3>Expense Categorization</h3>
+        <p>Automatically sorts expenses into categories (travel, meals, supplies, software) and flags items over $500 for review.</p>
+        <div class="skill-time"><span>Before:</span> ~45 min <span class="arrow">&rarr;</span> <span>After:</span> ~3 min</div>
+      </div>
+      <div class="skill-card" data-skill="invoice">
+        <div class="skill-icon">&#128196;</div>
+        <h3>Invoice Management</h3>
+        <p>Extracts vendor names, amounts, due dates, and invoice numbers. Highlights overdue invoices and generates tracking sheets.</p>
+        <div class="skill-time"><span>Before:</span> ~1 hour <span class="arrow">&rarr;</span> <span>After:</span> ~5 min</div>
+      </div>
+      <div class="skill-card" data-skill="reconcile">
+        <div class="skill-icon">&#128182;</div>
+        <h3>Bank Reconciliation</h3>
+        <p>Matches bank statement transactions to GL entries, cleans vendor names, and flags unmatched items for review.</p>
+        <div class="skill-time"><span>Before:</span> ~3 hours <span class="arrow">&rarr;</span> <span>After:</span> ~15 min</div>
+      </div>
+      <div class="skill-card" data-skill="report">
+        <div class="skill-icon">&#128202;</div>
+        <h3>Monthly Reporting</h3>
+        <p>Compiles category breakdowns, month-over-month comparisons, unpaid invoice lists, and flagged items into a summary report.</p>
+        <div class="skill-time"><span>Before:</span> ~3 hours <span class="arrow">&rarr;</span> <span>After:</span> ~15 min</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Demo -->
+  <section id="demo" class="demo-section">
+    <h2>Interactive Demo</h2>
+    <p class="section-sub">Select a skill and watch the AI process sample accounting data in real time.</p>
+
+    <div class="demo-container">
+      <div class="demo-sidebar">
+        <button class="demo-tab active" data-demo="receipt">&#128451; Receipt Processing</button>
+        <button class="demo-tab" data-demo="categorize">&#128193; Expense Categorization</button>
+        <button class="demo-tab" data-demo="invoice">&#128196; Invoice Management</button>
+        <button class="demo-tab" data-demo="reconcile">&#128182; Bank Reconciliation</button>
+        <button class="demo-tab" data-demo="report">&#128202; Monthly Report</button>
+      </div>
+
+      <div class="demo-main">
+        <div class="demo-input-panel" id="dropZone">
+          <h3>Input Data</h3>
+          <div id="demoInput" class="demo-data drop-target">
+            <div class="drop-message">
+              <span>Drag & Drop files here</span>
+              <span class="text-xs">Supports .xlsx, .csv</span>
+            </div>
+          </div>
+          <button id="runDemo" class="btn btn-primary btn-run">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 2l10 6-10 6V2z" fill="currentColor"/></svg>
+            Run Skill
+          </button>
+        </div>
+        <div class="demo-output-panel">
+          <h3>AI Output</h3>
+          <div id="demoOutput" class="demo-data"></div>
+          <div id="demoProgress" class="progress-bar"><div class="progress-fill"></div></div>
+          <div class="export-actions" id="exportActions" style="display: none; margin-top: 1rem; gap: 0.5rem;">
+            <button id="exportQbo" class="btn btn-outline btn-sm">QuickBooks (IIF)</button>
+            <button id="exportXero" class="btn btn-outline btn-sm">Xero (CSV)</button>
+            <button id="emailReport" class="btn btn-primary btn-sm" style="margin-left: auto;">Send Report</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section id="stats" class="stats-section">
+    <h2>The Impact</h2>
+    <p class="section-sub">Real time savings reported by accounting firms using Claude Cowork.</p>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number" data-target="92">0</div>
+        <div class="stat-unit">%</div>
+        <div class="stat-label">Time Reduction</div>
+        <div class="stat-detail">6 hours &rarr; 30 minutes monthly</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" data-target="30">0</div>
+        <div class="stat-unit">receipts</div>
+        <div class="stat-label">Processed in 10 min</div>
+        <div class="stat-detail">Previously took 2+ hours</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" data-target="5">0</div>
+        <div class="stat-unit">skills</div>
+        <div class="stat-label">Full Workflow Coverage</div>
+        <div class="stat-detail">Receipt to report, end-to-end</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" data-target="0">0</div>
+        <div class="stat-unit">code</div>
+        <div class="stat-label">No Coding Required</div>
+        <div class="stat-detail">Natural language prompts only</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-section">
+    <h2>How Claude Cowork Skills Work</h2>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="step-num">1</div>
+        <h3>Drop Files</h3>
+        <p>Add receipts, bank statements, invoices, or GL exports to your Cowork project folder.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">2</div>
+        <h3>Activate Skill</h3>
+        <p>Select a saved skill or type a natural language prompt describing the task.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">3</div>
+        <h3>AI Executes</h3>
+        <p>Claude reads files, processes data, categorizes, reconciles, and generates output files automatically.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">4</div>
+        <h3>Review & Approve</h3>
+        <p>Review flagged items, approve the output, and export to Excel or your accounting software.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Demo inspired by <a href="https://www.youtube.com/watch?v=5DevfwAfVpA&t=148s" target="_blank">Why Claude Cowork Is Already Changing Accounting Firms</a> by Jason On Firms</p>
+    <p class="footer-sub">This is a demonstration website — not affiliated with Anthropic.</p>
+  </footer>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>API Settings</h3>
+        <button id="closeSettings" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label for="apiKey">Anthropic API Key</label>
+        <input type="password" id="apiKey" placeholder="sk-ant-api03-..." class="api-input">
+        <p class="text-xs text-dim mt-2">Your key is stored locally in your browser and used only to process files via the real Claude API.</p>
+      </div>
+      <div class="modal-footer">
+        <button id="saveSettings" class="btn btn-primary">Save Key</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
