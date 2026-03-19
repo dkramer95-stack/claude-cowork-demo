@@ -469,7 +469,10 @@ async function processWithClaude(dataStr) {
 
 ${dataStr}
 
-Process the data and output a formatted plain-text accounting report (similar to a CLI or monospace report). Do NOT use markdown code blocks, just pure formatted text. Use emojis if appropriate. Be concise and professional.`;
+Process the data and output a formatted plain-text accounting report (similar to a CLI or monospace report). Do NOT use markdown code blocks, just pure formatted text. Use emojis if appropriate. Be concise and professional.
+
+CRITICAL PRIVACY REQUIREMENT: 
+You must strictly protect user data. Redact all confidential information, including personal names, bank/credit card numbers, and exact vendor transaction IDs. Replace such data with asterisks (e.g., Acct ending in ****1234 or Name: J*** S***). Emphasize that confidential data has been protected directly in your output.`;
 
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages', {
