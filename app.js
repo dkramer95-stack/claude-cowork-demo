@@ -609,6 +609,24 @@ document.getElementById('exportXero').addEventListener('click', () => {
   downloadBlob(csvData, 'xero_export.csv', 'text/csv');
 });
 
+document.getElementById('exportXlsx').addEventListener('click', () => {
+  if (typeof XLSX === 'undefined') {
+    alert('SheetJS is not loaded!');
+    return;
+  }
+  // Convert plain-text output into an array of arrays
+  const lines = currentOutputText.trim().split('\n');
+  const aoa = lines.map(line => {
+    if (line.match(/^[-─━]+$/)) return [line];
+    return line.split(/\s{2,}/);
+  });
+  
+  const ws = XLSX.utils.aoa_to_sheet(aoa);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Report");
+  XLSX.writeFile(wb, `${currentDemo}_report.xlsx`);
+});
+
 document.getElementById('emailReport').addEventListener('click', () => {
   const subject = encodeURIComponent(`Accounting Report: ${currentDemo} skill`);
   const body = encodeURIComponent(`Here is the latest report from Claude Cowork:\n\n${currentOutputText}`);
