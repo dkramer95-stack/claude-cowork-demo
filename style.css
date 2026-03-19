@@ -1,18 +1,18 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #0a0a0f;
-  --surface: #12121a;
-  --surface2: #1a1a26;
-  --border: #2a2a3a;
-  --text: #e4e4ed;
-  --text-dim: #8888a0;
-  --accent: #d97706;
-  --accent-light: #f59e0b;
-  --green: #22c55e;
-  --red: #ef4444;
-  --blue: #3b82f6;
-  --radius: 12px;
+  --bg: #F4F5F8;
+  --surface: #FFFFFF;
+  --surface2: #F9FAFB;
+  --border: #D1D5DB;
+  --text: #393A3D;
+  --text-dim: #6B7280;
+  --accent: #2CA01C;
+  --accent-light: #31B420;
+  --green: #2CA01C;
+  --red: #D93F3C;
+  --blue: #0077C5;
+  --radius: 8px;
 }
 
 body {
@@ -69,24 +69,21 @@ nav {
 .hero-content { text-align: center; margin-top: 3rem; }
 .badge {
   display: inline-block;
-  background: rgba(217, 119, 6, 0.15);
-  color: var(--accent-light);
+  background: rgba(44, 160, 28, 0.15);
+  color: var(--accent);
   padding: 0.35rem 1rem;
   border-radius: 50px;
   font-size: 0.8rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(217, 119, 6, 0.3);
+  border: 1px solid rgba(44, 160, 28, 0.3);
 }
 .hero h1 {
   font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 1.25rem;
-  background: linear-gradient(135deg, #fff 0%, #d4d4e0 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #000;
 }
 .subtitle {
   font-size: 1.15rem;
@@ -119,26 +116,26 @@ nav {
 /* Hero Terminal */
 .hero-visual { margin-top: 3rem; display: flex; justify-content: center; }
 .terminal {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #12121a;
+  border: 1px solid #2a2a3a;
   border-radius: var(--radius);
   width: 100%;
   max-width: 720px;
   overflow: hidden;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.15);
 }
 .terminal-bar {
   display: flex;
   gap: 6px;
   padding: 12px 16px;
-  background: var(--surface2);
-  border-bottom: 1px solid var(--border);
+  background: #1a1a26;
+  border-bottom: 1px solid #2a2a3a;
 }
 .terminal-bar span {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--border);
+  background: #2a2a3a;
 }
 .terminal-bar span:nth-child(1) { background: #ef4444; }
 .terminal-bar span:nth-child(2) { background: #f59e0b; }
@@ -149,11 +146,11 @@ nav {
   font-size: 0.82rem;
   line-height: 1.7;
   min-height: 200px;
-  color: var(--text-dim);
+  color: #8888a0;
 }
-.terminal-body .cmd { color: var(--accent-light); }
-.terminal-body .success { color: var(--green); }
-.terminal-body .info { color: var(--blue); }
+.terminal-body .cmd { color: #f59e0b; }
+.terminal-body .success { color: #22c55e; }
+.terminal-body .info { color: #3b82f6; }
 .terminal-body .dim { color: #555570; }
 
 /* Skills Section */
@@ -190,7 +187,7 @@ h2 {
 .skill-card:hover {
   border-color: var(--accent);
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(217, 119, 6, 0.1);
+  box-shadow: 0 12px 40px rgba(44, 160, 28, 0.1);
 }
 .skill-icon { font-size: 2rem; margin-bottom: 0.75rem; }
 .skill-card h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
@@ -238,8 +235,8 @@ h2 {
   transition: all 0.2s;
   font-family: inherit;
 }
-.demo-tab:hover { background: rgba(255,255,255,0.05); color: var(--text); }
-.demo-tab.active { background: rgba(217, 119, 6, 0.15); color: var(--accent-light); }
+.demo-tab:hover { background: rgba(0,0,0,0.05); color: var(--text); }
+.demo-tab.active { background: rgba(44, 160, 28, 0.15); color: var(--accent); }
 
 .demo-main {
   flex: 1;
@@ -266,7 +263,7 @@ h2 {
   font-family: 'SF Mono', 'Fira Code', monospace;
   font-size: 0.78rem;
   line-height: 1.6;
-  background: var(--bg);
+  background: var(--surface2);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 1rem;
@@ -299,7 +296,7 @@ h2 {
 }
 
 /* output highlights */
-.demo-data .label { color: var(--accent-light); font-weight: 600; }
+.demo-data .label { color: var(--accent); font-weight: 600; }
 .demo-data .val { color: var(--text); }
 .demo-data .flag { color: var(--red); font-weight: 600; }
 .demo-data .ok { color: var(--green); }
@@ -355,15 +352,15 @@ h2 {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: rgba(217, 119, 6, 0.15);
-  color: var(--accent-light);
+  background: rgba(44, 160, 28, 0.15);
+  color: var(--accent);
   font-weight: 800;
   font-size: 1.25rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
-  border: 2px solid rgba(217, 119, 6, 0.3);
+  border: 2px solid rgba(44, 160, 28, 0.3);
 }
 .how-step h3 { margin-bottom: 0.5rem; }
 .how-step p { color: var(--text-dim); font-size: 0.9rem; }
@@ -505,7 +502,7 @@ footer {
 }
 .drop-target.drag-over {
   border-color: var(--accent);
-  background: rgba(217,119,6,0.05);
+  background: rgba(44, 160, 28, 0.05);
 }
 .drop-message {
   display: flex;
