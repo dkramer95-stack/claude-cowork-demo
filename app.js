@@ -465,11 +465,16 @@ async function processWithClaude(dataStr) {
     return null;
   }
 
+  let extraInstructions = "";
+  if (currentDemo === 'categorize') {
+    extraInstructions = "\nAlways calculate and bold a **GRAND TOTAL** of all expenses at the bottom of the report.";
+  }
+
   const prompt = `You are an AI accounting assistant. The user wants you to run the "${currentDemo}" skill on the following data:
 
 ${dataStr}
 
-Process the data and output a formatted plain-text accounting report (similar to a CLI or monospace report). Do NOT use markdown code blocks, just pure formatted text. Use emojis if appropriate. Be concise and professional.
+Process the data and output a formatted plain-text accounting report (similar to a CLI or monospace report). Do NOT use markdown code blocks, just pure formatted text. Use emojis if appropriate. Be concise and professional.${extraInstructions}
 
 CRITICAL PRIVACY REQUIREMENT: 
 You must strictly protect user data. Redact all confidential information, including personal names, bank/credit card numbers, and exact vendor transaction IDs. Replace such data with asterisks (e.g., Acct ending in ****1234 or Name: J*** S***). Emphasize that confidential data has been protected directly in your output.`;
